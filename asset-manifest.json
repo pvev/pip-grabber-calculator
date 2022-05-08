@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pip-grabber-calc.github.io/static/css/main.73aa8fe4.css",
+    "main.js": "/pip-grabber-calc.github.io/static/js/main.5ca343f5.js",
+    "static/js/787.4be6b480.chunk.js": "/pip-grabber-calc.github.io/static/js/787.4be6b480.chunk.js",
+    "service-worker.js": "/pip-grabber-calc.github.io/service-worker.js",
+    "index.html": "/pip-grabber-calc.github.io/index.html",
+    "main.73aa8fe4.css.map": "/pip-grabber-calc.github.io/static/css/main.73aa8fe4.css.map",
+    "main.5ca343f5.js.map": "/pip-grabber-calc.github.io/static/js/main.5ca343f5.js.map",
+    "787.4be6b480.chunk.js.map": "/pip-grabber-calc.github.io/static/js/787.4be6b480.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73aa8fe4.css",
+    "static/js/main.5ca343f5.js"
+  ]
+}
