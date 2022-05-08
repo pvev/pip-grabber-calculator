@@ -14,13 +14,14 @@ const CalculatedValues = ({
     calculatedValues,
     markAsCopied,
 }: CalculatedValuesProps) => {
+
     return (
         <ListGroup as="ul" className='CalculatedValues'>
             {calculatedValues.map((calculatedValue: CalculatedValueType, index: number) => {
                 return (
                     <CalculatedValueItem
                         itemValue={calculatedValue.value}
-                        key={index}
+                        key={index+calculatedValue.value}
                         copied={calculatedValue.copied}
                         markAsCopied={markAsCopied}
                         index={index}

@@ -4,8 +4,8 @@ import Form from 'react-bootstrap/esm/Form';
 import './target_input.scss';
 
 interface TargetInputProps {
-    targetValue: number;
-    setTargetValue: Function;
+    targetValue: string;
+    setTargetValue: (value: string) => void;
 
     resetTargetValue: () => void;
 }

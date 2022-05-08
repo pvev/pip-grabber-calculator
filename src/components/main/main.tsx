@@ -7,29 +7,40 @@ import TargetInput from '../target_input/target_input';
 
 
 import './main.scss';
+import { Alert } from 'react-bootstrap';
 
 export type CalculatedValueType = {
-    value: number;
+    value: string;
     copied: boolean;
     index: number;
 }
  
 const Main = () => {
+    const DECIMALS = 5;
+    const PIPS_VALUE = '0.00230';
+
     const [values, setValues] = useState<Array<CalculatedValueType>>([]);
-    const [pipsValue, setPipsValue] = useState<number>(0.0023)
-    const [targetValue, setTargetValue] = useState<number>(1.0054)
+    const [pipsValue, setPipsValue] = useState<string>(PIPS_VALUE);
+    const [targetValue, setTargetValue] = useState<string>('')
+    const [error, setError] = useState<string>('')
+    
 
     const calculateResultValues = (operation: string) => {
+        setValues([]);
         const tempValuesArray = [];
-        let tempNum = parseFloat(targetValue.toFixed(4));
+        if (!targetValue) {
+            setErrorMessage('Ingrese un valor a calcular');
+            return;
+        }
+        let tempNum = parseFloat(Number(targetValue).toFixed(DECIMALS));
         for (let i = 1; i < 6; i++) {
             if (operation === 'ADD') {
-                tempNum = Number(tempNum) + Number(parseFloat(pipsValue.toFixed(4)));
+                tempNum = Number(tempNum) + parseFloat(Number(pipsValue).toFixed(DECIMALS));
             } else if (operation === 'SUBSTRACT') {
-                tempNum = Number(tempNum) - Number(parseFloat(pipsValue.toFixed(4)));
+                tempNum = Number(tempNum) - parseFloat(Number(pipsValue).toFixed(DECIMALS));
             }
             tempValuesArray.push({
-                value: parseFloat(tempNum.toFixed(4)),
+                value: tempNum.toFixed(DECIMALS),
                 copied: false,
                 index: i,
             });
@@ -37,12 +48,27 @@ const Main = () => {
         setValues(tempValuesArray);
     }
 
+    const setErrorMessage = (msg: string) => {
+        setError(msg);
+        setTimeout(() => {
+            setError('');
+        }, 3000);
+    }
+
     const setPipValueFn = (newPipValue: number) => {
-        setPipsValue(parseFloat(newPipValue.toFixed(4)));
+        setPipsValue(newPipValue.toFixed(DECIMALS));
+        setValues([]);
     }
 
     const resetTargetValue = () => {
-        setTargetValue(0);
+        setTargetValue('');
+        setValues([]);
+        setError('');
+    }
+
+    const setTargetValueFn = (value: string) => {
+        setTargetValue(value);
+        setError('');
     }
 
     const markAsCopied = (index: number) => {
@@ -60,14 +86,14 @@ const Main = () => {
         <div className='Main'>
             <div className='pip-input'>
                 <PipInput
-                    pipValue={pipsValue}
+                    pipValue={Number(pipsValue).toFixed(DECIMALS)}
                     setPipValue={setPipValueFn}
                 />
             </div>
             <div className='target-input'>
                 <TargetInput
                     targetValue={targetValue}
-                    setTargetValue={setTargetValue}
+                    setTargetValue={setTargetValueFn}
                     resetTargetValue={resetTargetValue}
                 />
             </div>
@@ -76,6 +102,11 @@ const Main = () => {
                     setCalculatedValues={calculateResultValues}
                 />
             </div>
+            {error !== '' && <div className='error-notification'>
+                <Alert key={'error'} variant='danger'>
+                    {error}
+                </Alert>
+            </div>}
             <div className='values-list'>
                 <CalculatedValues
                     calculatedValues={values}

@@ -1,11 +1,10 @@
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 
 import './pip_input.scss';
 
 interface PipInputProps {
-    pipValue: number;
+    pipValue: string;
     setPipValue: Function;
 }
  
@@ -17,7 +16,7 @@ const PipInput= ({pipValue, setPipValue}: PipInputProps) => {
     }
 
     const substractOnePip = () => {
-        setPipValue(pipValue - pipNumber);
+        setPipValue(Number(pipValue) - Number(pipNumber));
     }
 
     return ( 
@@ -46,7 +45,7 @@ const PipInput= ({pipValue, setPipValue}: PipInputProps) => {
                     step="0.001"
                     max="1.00"
                     disabled
-                    value={pipValue}
+                    value={Number(pipValue).toFixed(4)}
                 />
                 <Button
                     className='plus'

@@ -3,7 +3,7 @@ import { Badge, ListGroup } from "react-bootstrap";
 import { copyToClipboardUtility } from "../../utils";
 
 interface CalculatedValueItemProps {
-    itemValue: number;
+    itemValue: string;
     copied: boolean;
 
     markAsCopied: Function;
