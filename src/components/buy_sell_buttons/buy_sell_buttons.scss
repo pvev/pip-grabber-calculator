@@ -1,0 +1,12 @@
+.BuySellButtons {
+    display: flex;
+
+    .sell {
+        margin-right: 20px;
+        flex-grow: 1;
+    }
+
+    .buy {
+        flex-grow: 1;
+    }
+}

@@ -1,0 +1,18 @@
+.PipInput {
+    margin: 20px;
+
+    .input-title {
+        margin-bottom: 5px;
+    }
+    .input-wrapper {
+        display: flex;
+
+        .minus {
+            margin-right: 5px;
+        }
+
+        .plus {
+            margin-left: 5px;
+        }
+    }
+}
